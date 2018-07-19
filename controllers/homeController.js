@@ -1,6 +1,9 @@
-const routes = require('routes');
+const express = require('express')
+const router = express.Router()
 
-routes.get('/', function(req, res) {
-    console.log("teste");
+router.get('/', function(req, res) {
+    res.render("home/index");
 });
+
+module.exports = router
 

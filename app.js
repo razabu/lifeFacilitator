@@ -5,9 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var stylus = require('stylus');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -21,13 +18,13 @@ app.use(cookieParser());
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Test routes
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+/**
+ * Routes
+ */
 
-// Home routes
-var homeRouter = require('./routes/home');
-app.use('/home', homeRouter);
+const homeRouter = require('./controllers/homeController');
+
+app.get('/', homeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
